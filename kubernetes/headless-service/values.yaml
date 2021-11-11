@@ -1,5 +1,3 @@
-global:
-  imageK8s: tecke/consul-k8s-dev:latest
 connectInject:
   enabled: true
 ui:
