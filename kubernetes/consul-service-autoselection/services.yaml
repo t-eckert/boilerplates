@@ -1,0 +1,28 @@
+# The Headless service should not be routed by Consul.
+apiVersion: v1
+kind: Service
+metadata:
+  name: headless-service
+  labels:
+    consul.hashicorp.com/connect-service-selector: "static-service"
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: static-server
+  clusterIP: None
+---
+# The Static server should be routed to the Pod by Consul.
+apiVersion: v1
+kind: Service
+metadata:
+  name: static-service
+  labels:
+    consul.hashicorp.com/connect-service-selector: "static-service"
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: static-server

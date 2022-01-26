@@ -1,0 +1,9 @@
+global:
+  imageK8S: tecke/consul-k8s-dev:latest
+connectInject:
+  enabled: true
+ui:
+  enabled: true
+server:
+  enabled: true
+  replicas: 1

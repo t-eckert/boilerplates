@@ -1,0 +1,23 @@
+# Pod to be routed to by Consul.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: static-server
+  labels:
+    app: static-server
+  annotations:
+    consul.hashicorp.com/connect-inject: "true"
+spec:
+  containers:
+    - name: static-server
+      image: hashicorp/http-echo:latest
+      ports:
+        - containerPort: 8080
+          name: http
+      args:
+        - "--text=Hello, World!"
+        - "--listen=:8080"
+      resources:
+        limits:
+          cpu: 100m
+          memory: 128Mi
